@@ -1,0 +1,26 @@
+{
+  "manifest_version": 2,
+
+  "name": "My extention",
+  "description": "My one",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "templates/popup.html"
+  },
+  "chrome_url_overrides": {
+  }
+  ,
+  "background": {
+    "scripts": ["public/jquery/jquery.min.js", "background.js"]
+  },"permissions": [
+          "tabs", "activeTab"
+        ],
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["public/jquery/jquery.min.js", "public/myScripts/passwordHack.js"]
+    }
+  ]
+}
