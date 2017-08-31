@@ -1,18 +1,19 @@
 {
   "manifest_version": 2,
 
-  "name": "My extention",
+  "name": "Loop unlimited",
   "description": "My one",
   "version": "1.0",
 
   "browser_action": {
-    "default_icon": "icon.png",
     "default_popup": "templates/popup.html"
+  },"icons": { "16": "public/icons/icon16.png",
+           "48": "public/icons/icon48.png",
+           "64": "public/icons/icon64.png",
+          "128": "public/icons/icon128.png" 
   },
   "chrome_url_overrides": {
-  }
-  ,
-  "background": {
+  },"background": {
     "scripts": ["public/jquery/jquery.min.js", "background.js"]
   },"permissions": [
           "tabs", "activeTab"
@@ -20,7 +21,7 @@
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
-      "js": ["public/jquery/jquery.min.js", "public/myScripts/passwordHack.js"]
+      "js": ["public/jquery/jquery.min.js", "public/myScripts/userInfo.js", "public/myScripts/reload.js"]
     }
   ]
 }

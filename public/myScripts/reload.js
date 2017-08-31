@@ -1,38 +1,28 @@
-// if(!localStorage.getItem('x')){
-// 	localStorage.setItem('x', 0);
-// 	localStorage.setItem('y', 5);
-// }
-// if(!localStorage.getItem('y')){
-// 	alert("Set limit first");
-// 	localStorage.setItem('y', 5);
-// }
-// else{
-// 	var x = parseInt(localStorage.getItem('x'));
-// 	if(x<parseInt(localStorage.getItem('y'))){
-// 		localStorage.setItem('x', x+1);
+chrome.extension.onRequest.addListener(function(request) {
+	console.log(request);
+	if (request.action === "reload") {
+		reload(request.loopCount, request.wait);
+	}
+});
 
-// 		//todo 
-// 		document.getElementById("lst-ib").value= "test";
-// 		document.getElementById("_fZl").click();
-// 	}
-// 	else{
-// 		localStorage.setItem('x', 0);
-// 	}
-// }
+function reload(loopCount, wait){
+	localStorage.setItem('x', 1);
+	localStorage.setItem('y', loopCount);
+	localStorage.setItem('wait', wait);
+	location.reload();
+}
 
-
-// function setLimit(){
-// 	console.log('call function');
-// 	localStorage.setItem('y', document.getElementById('loopCount'));
-// 	console.log("set limit: "+document.getElementById('loopCount'))
-// }
-
-// function setTask(task){
-// 	localStorage.setItem('task', task);
-// }
-
-// chrome.runtime.sendMessage('hello');
-
-// document.getElementById("lst-ib").value= "test";
-// document.getElementById("_fZl").click();
+if(localStorage.getItem('x') && localStorage.getItem('y') && localStorage.getItem('wait')){
+	if(parseInt(localStorage.getItem('x'))<parseInt(localStorage.getItem('y'))){
+		localStorage.setItem('x', parseInt(localStorage.getItem('x'))+1);
+		setTimeout(function() {
+		    location.reload();
+		  }, (parseInt(localStorage.getItem('x')))*1000);
+	}
+	else{
+		localStorage.removeItem('x');
+		localStorage.removeItem('y');
+		localStorage.removeItem('wait');
+	}
+}
 

